@@ -88,8 +88,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showStatus() {
+
         if (myTask != null) {
-            message = myTask.getStatus().toString();
+            //Обработка случая, когда задача завершается при помощи метода cancel()
+            if (myTask.isCancelled()) {
+                message = getString(R.string.cancelled);
+            } else {
+                message = myTask.getStatus().toString();
+            }
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         }
     }

@@ -72,13 +72,19 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btnStatus :
                 showStatus();
                 break;
+            case R.id.btnCancel :
+                cancelTask();
+                break;
             default:
                 break;
         }
     }
 
     private void startTask() {
+        //Создание задачи
         myTask = new MyTask();
+        //Старт задачи
+        myTask.execute();
     }
 
     private void showStatus() {
@@ -86,5 +92,9 @@ public class MainActivity extends AppCompatActivity {
             message = myTask.getStatus().toString();
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void cancelTask() {
+        myTask.cancel(true);
     }
 }
